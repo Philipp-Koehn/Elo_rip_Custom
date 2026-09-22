@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elo Rip Custom</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="Hotbar" id="hotbar">
+    <button class="HotbarButton" id="champs">Champion</button>
+    <button class="HotbarButton" id="role">Position</button>
+    <button class="HotbarButton" id="team">Team</button> 
+</div>
+<div class="champinterface" id="champinterface">
+    <div class="championsbox" id="championsbox">
+        <h2 class="boxtitle">Champion Roulette</h2>
+        <div class="rolefilter" id="rolefilter">
+            <button class="rolefilterbutton" id="all">Alle</button>
+            <button class="rolefilterbutton" id="top">Top</button>
+            <button class="rolefilterbutton" id="jungle">Jungle</button>
+            <button class="rolefilterbutton" id="mid">Mid</button>
+            <button class="rolefilterbutton" id="adc">ADC</button>
+            <button class="rolefilterbutton" id="support">Support</button>
+        </div>
+        <div class="championsslots" id="championsslots">
+            <div class="case" id="case">
+                <div class="casemarker"></div>
+                <div class="casetrack" id="casetrack"></div>
+            </div>
+            <div class="rollbar">
+                <button class="rollbutton" id="roll">Roll</button>
+                <span class="rollinfo" id="rollinfo">Alle &middot; 0 Champions</span>
+            </div>
+            <div class="result" id="result"></div>
+        </div>
+        <div class="selected-champ" id="selected-champ">
+            <h3>Gewählter Champion:</h3>
+            <div class="champion-info" id="champion-info"></div>
+            <div class="result" id="selected-name"></div>
+            <div class="buttons">
+                <button class="accept" id="accept">Akzeptieren</button>
+                <button class="reroll" id="reroll">Reroll</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="module" src="script.js"></script>
+</body>
+</html>

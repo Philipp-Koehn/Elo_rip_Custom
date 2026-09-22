@@ -1,0 +1,403 @@
+:root {
+    --bg-deep: #050a14;
+    --bg-panel: #0d1b2a;
+    --bg-elevated: #14243a;
+    --gold: #c8aa6e;
+    --gold-bright: #f0e6d2;
+    --teal: #0ac8b9;
+    --border-subtle: rgba(200, 170, 110, 0.25);
+    --text: #f0e6d2;
+    --text-muted: #a09b8c;
+    --item-size: 120px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 24px 16px 48px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 50% 0%, #1a3a5c 0%, transparent 55%),
+        linear-gradient(180deg, var(--bg-deep), #010409);
+    background-attachment: fixed;
+}
+
+/* ---------- Hotbar ---------- */
+
+.Hotbar {
+    display: flex;
+    gap: 6px;
+    padding: 6px;
+    background: rgba(13, 27, 42, 0.9);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.HotbarButton {
+    padding: 10px 24px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.HotbarButton:hover {
+    color: var(--gold-bright);
+    background: rgba(200, 170, 110, 0.1);
+    border-color: var(--border-subtle);
+}
+
+/* ---------- Panel ---------- */
+
+.champinterface {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.championsbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    width: min(720px, 100%);
+    padding: 28px 24px 32px;
+    background: linear-gradient(180deg, var(--bg-panel), #091420);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.boxtitle {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+/* ---------- Rollen-Filter ---------- */
+
+.rolefilter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.rolefilterbutton {
+    padding: 8px 18px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--bg-elevated);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.rolefilterbutton:hover {
+    color: var(--gold-bright);
+    border-color: var(--gold);
+}
+
+.rolefilterbutton.active {
+    color: var(--bg-deep);
+    background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+    border-color: var(--gold-bright);
+}
+
+/* ---------- Case ---------- */
+
+.championsslots {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.case {
+    position: relative;
+    width: 100%;
+    height: calc(var(--item-size) + 24px);
+    overflow: hidden;
+    background: #060d16;
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+/* weiche Kanten links/rechts, damit die Bilder aus dem Nichts kommen */
+.case::before,
+.case::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 90px;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.case::before {
+    left: 0;
+    background: linear-gradient(90deg, #060d16, transparent);
+}
+
+.case::after {
+    right: 0;
+    background: linear-gradient(270deg, #060d16, transparent);
+}
+
+.casemarker {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 3px;
+    height: 100%;
+    background: var(--gold-bright);
+    box-shadow: 0 0 12px var(--gold-bright), 0 0 26px var(--gold);
+    transform: translateX(-50%);
+    z-index: 4;
+}
+
+/* Pfeilspitzen oben und unten, damit der Marker auf hellen Bildern lesbar bleibt */
+.casemarker::before,
+.casemarker::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    transform: translateX(-50%);
+}
+
+.casemarker::before {
+    top: 0;
+    border-top: 9px solid var(--gold-bright);
+}
+
+.casemarker::after {
+    bottom: 0;
+    border-bottom: 9px solid var(--gold-bright);
+}
+
+.casetrack {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    will-change: transform;
+}
+
+.caseitem {
+    flex: 0 0 var(--item-size);
+    height: var(--item-size);
+    margin: 0 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--bg-elevated);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.caseitem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ---------- Roll ---------- */
+
+.rollbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.rollbutton {
+    padding: 12px 44px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--bg-deep);
+    background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+    border: 1px solid var(--gold-bright);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.rollbutton:hover:not(:disabled) {
+    filter: brightness(1.1);
+    box-shadow: 0 0 24px rgba(200, 170, 110, 0.45);
+    transform: translateY(-2px);
+}
+
+.rollbutton:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.rollbutton:disabled {
+    color: var(--text-muted);
+    background: var(--bg-elevated);
+    border-color: rgba(255, 255, 255, 0.08);
+    cursor: not-allowed;
+}
+
+.rollinfo {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+}
+
+.result {
+    min-height: 34px;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: var(--gold-bright);
+    text-shadow: 0 0 20px rgba(200, 170, 110, 0.5);
+}
+
+.result:not(:empty) {
+    animation: resultpop 0.45s ease;
+}
+
+@keyframes resultpop {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* ---------- Overlay: gewählter Champion ---------- */
+
+.selected-champ {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 24px;
+    background: rgba(2, 6, 12, 0.82);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.selected-champ.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.selected-champ h3 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.champion-info img {
+    width: 200px;
+    height: 200px;
+    display: block;
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(200, 170, 110, 0.35);
+}
+
+.selected-champ .result {
+    margin: 0;
+}
+
+.selected-champ .buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.accept,
+.reroll {
+    padding: 12px 32px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease, background 0.15s ease;
+}
+
+.accept {
+    color: var(--bg-deep);
+    background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+    border: 1px solid var(--gold-bright);
+}
+
+.reroll {
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+}
+
+.accept:hover,
+.reroll:hover {
+    filter: brightness(1.12);
+    transform: translateY(-2px);
+}
+
+.reroll:hover {
+    border-color: var(--gold);
+    color: var(--gold-bright);
+}
+
+.selected-champ.open .champion-info img {
+    animation: championreveal 0.4s ease;
+}
+
+@keyframes championreveal {
+    from { opacity: 0; transform: scale(0.85); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 560px) {
+    .champion-info img { width: 150px; height: 150px; }
+    :root { --item-size: 88px; }
+    .case::before, .case::after { width: 48px; }
+    .result { font-size: 20px; }
+}
